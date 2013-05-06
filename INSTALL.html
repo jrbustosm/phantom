@@ -6,9 +6,9 @@
 <h2>Configuración de apache</h2>
 
 <code>
-sudo ln -s  /etc/apache2/mods-available/rewrite.load  /etc/apache2/mods-enabled/
-sudo a2enmod rewrite
-vim /etc/apache2/sites-enabled/000-default
+sudo ln -s  /etc/apache2/mods-available/rewrite.load  /etc/apache2/mods-enabled/<br />
+sudo a2enmod rewrite<br />
+vim /etc/apache2/sites-enabled/000-default<br />
 </code>
 
 <p>Modificar en el directorio correspondiente el comando "AllowOverride None" por "AllowOverride All", y reiniciamos apache</p>
