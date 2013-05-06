@@ -28,4 +28,5 @@ Espeficaciones Phantom:
   
 8.  Pruebas Unitarias:NO
 9.  Autocarga de clases:NO
-10. Templates para vistas:Si
+10. Templates para vistas:SI
+11. Multiple base de datos:NO
