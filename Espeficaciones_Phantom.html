@@ -1,34 +1,46 @@
-Espeficaciones Phantom:
-1.  En español
-2.	PHPdoc obligatorio.
-3.	POO
-4.  URL limpias siempre 
-5.  Bases de Datos: Mysql y SQLlite
-6.  Modelo POO de Base de datos:
-    -Multiples PK:ok.
-    -Uno a uno:ok.
-    -Uno a muchos:ok.
-    -Muchos a Muchos:Posiblemente.
-7.  Directorio:
-    +Core: # clases propias del sistema.
-    +Img:  # imagenes.
-    +Css:  # hojas de estilo
-    +Js:   # Javascript
-    +Jquery
-     jquery.min.js     
-     jquery-ui.min.js
-     img
-    +data # Bases datos SQlite
-    +conf # archivos de configuracion 
-      main.conf # archivo de configuiracion principal
-    +Project
-    +control
-    +view
-    +model
-    +index.php # el unico archivo que el unico usuario puede acceder
-  
-8.  Pruebas Unitarias:NO
-9.  Autocarga de clases:NO
-10. Templates para vistas:SI
-11. Multiple base de datos:NO
-12. Los directorios:core, conf, data y project con acceso restringido
+<!DOCTYPE html>
+
+<h1>Espeficaciones Phantom:</h1>
+
+<ol>
+<li>Todos los comentarios y nombres en español</li>
+<li>El uso de <a href="http://www.phpdoc.org/" target="_blank">PHPdoc</a> es obligatorio.</li>
+<li>Se va a usar en lo posible POO</li>
+<li>URL limpias siempre</li>
+<li>Soporte para Bases de Datos: Mysql y SQLlite</li>
+<li>Patron de diseño MVC</li>
+<li>Integración completa con Jquery</li>
+<li>iabstracción de modelo de Base de datos a POO:
+  <ul>
+  <li>-Multiples PK:ok.</li>
+  <li>-Uno a uno:ok.</li>
+  <li>-Uno a muchos:ok.</li>
+  <li>-Muchos a Muchos:Posiblemente.</li>
+  </ul>
+</li>
+<li>Directorio:<br>
+<pre>
+index.php # el unico archivo que el unico usuario puede acceder
++nucleo: # clases propias del sistema.
++img:  # imagenes.
++css:  # hojas de estilo
++js:   # Javascript
+  +jquery
+    jquery.min.js     
+    jquery-ui.min.js
+    img
++datos # Bases datos SQlite
++conf # archivos de configuracion 
+  main.conf # archivo de configuiracion principal
++proyecto
+  +control
+  +view
+  +model
+</pre>
+</li>  
+<li>Pruebas Unitarias:NO</li>
+<li>Autocarga de clases:NO</li>
+<li>Templates para vistas:SI</li>
+<li>Multiple base de datos:NO</li>
+<li>Los directorios:core, conf, data y project con acceso restringido</li>
+</ol>
