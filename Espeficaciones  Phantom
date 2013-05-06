@@ -1,0 +1,31 @@
+Espeficaciones Phantom:
+1.  En español
+2.	PHPdoc obligatorio.
+3.	POO
+4.  URL limpias siempre 
+5.  Bases de Datos: Mysql y SQLlite
+6.  Modelo POO de Base de datos:
+    -Multiples PK:ok.
+    -Uno a uno:ok.
+    -Uno a muchos:ok.
+    -Muchos a Muchos:Posiblemente.
+7.  Directorio:
+    +Core: # clases propias del sistema.
+    +Img:  # imagenes.
+    +Css:  # hojas de estilo
+    +Js:   # Javascript
+    +Jquery
+     jquery.min.js     
+     jquery-ui.min.js
+     img
+    +data # Bases datos SQlite
+    +conf # archivos de configuracion 
+      main.conf # archivo de configuiracion principal
+    +Project
+    +control
+    +view
+    +model
+  
+8.  Pruebas Unitarias:NO
+9.  Autocarga de clases:NO
+10. Templates para vistas:Si
