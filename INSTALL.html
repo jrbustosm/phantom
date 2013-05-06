@@ -1,0 +1,17 @@
+
+<h1>Instalación Panthom</h1>
+
+<h2>Configuración de apache</h2>
+
+<code>
+sudo ln -s  /etc/apache2/mods-available/rewrite.load  /etc/apache2/mods-enabled/
+sudo a2enmod rewrite
+vim /etc/apache2/sites-enabled/000-default
+</code>
+
+<p>Modificar en el directorio correspondiente el comando "AllowOverride None" por "AllowOverride All", y reiniciamos apache</p>
+
+<code>
+sudo /etc/init.d/apache2 restart
+</code>
+
