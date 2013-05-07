@@ -1,5 +1,6 @@
 <?php
-
+include 'nucleo/control.php';
+include 'proyecto/control/principal.php';
 
 function get_url() {
   $parametros = array();
@@ -8,8 +9,7 @@ function get_url() {
     if ($p!='') $parametros[] = $p;
   return $parametros;
 }
-
-print_r($_GET);
-print_r(get_url());
+$control=new Principal();
+$control->porDefecto(get_url());
 
 
