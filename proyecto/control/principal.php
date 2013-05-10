@@ -6,7 +6,7 @@ class Principal extends Control{
       "titulo"=>"Mi titulo",
       "contenido"=>"Contenido",
     );
-    $this->mostrarVista("pordefecto", $datos);
+    $this->mostrarVista("por_defecto", $datos);
   }
 }  
 
