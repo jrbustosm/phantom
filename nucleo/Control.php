@@ -18,6 +18,26 @@ pasando esta a las vistas<br />
 abstract class Control{
 
   /**
+  <p>Método ejecutarAccion:<br/>
+  <br/>
+  Ejecutar la accion indicada
+  </p>
+
+  @access public
+  @param string accion Accion a ejecutar
+  @param array parametros Arreglo asociativo con los parametros de la solicitud
+  @return void
+  */
+  public function ejecutarAccion($accion, $parametros){
+    if($accion=="") $this->porDefecto($parametros);
+    if(method_exists($this, $accion)){
+      $this->$accion($parametros);
+    } else {
+      $this->accionError($parametros);
+    }
+  }
+
+  /**
   <p>Método porDefecto:<br/>
   <br/>
   Método que se ejecuta por defecto si no se indica una acción<br/>

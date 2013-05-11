@@ -16,8 +16,10 @@ function get_url() {
 }
 
 $ps=get_url();
+
 if(count($ps)<=1 || $ps[1]=="index.php"){
-  $controlname="Principal";
+  //Accinamos el control por defecto
+  $controlname="Principal"; 
 }else{
   $controlname=$ps[1]; //TODO: no siempre esta en 1	
 }
@@ -28,14 +30,7 @@ if(class_exists($controlname)){
 	$control=new Error();
 }
 
-if($control instanceof Error || count($ps)<=2){
-	$control->porDefecto($ps);
-} else {
-	$accion=$ps[2]; //TODO: no siempre esta en 2
-	if(method_exists($control, $accion)){
-		$control->$accion($ps);
-	} else {
-		$control->accionError($ps);
-	}
-}
+$accion = "";
+if(count($ps)>1) $accion = $ps[2]; //TODO: no siempre esta en 2
+$control->ejecutarAccion($accion);
 
