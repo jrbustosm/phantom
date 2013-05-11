@@ -4,6 +4,11 @@ class imagen extends Control{
 		echo "Hola soy imagen por defecto";
 	}
 	public function listar($parametros){
-		echo "Se supone que listo las imagenes";
+		$con = new ConectorSQLITE();
+		$v = $con->buscarTodos("Imagenes");
+		$datos = array(
+		 "imagenes" => $v
+		);
+		$this->mostrarVista("listarImagenes", $datos);
 	}
 } 
