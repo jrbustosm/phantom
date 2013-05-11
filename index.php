@@ -9,7 +9,7 @@ function get_url() {
     if ($p!='') $parametros[] = $p;
   return $parametros;
 }
-  $ps=get_url();
+  $ps= get_url ();
   print_r($ps);
   
 
