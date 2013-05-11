@@ -1,5 +1,7 @@
 <?php
 include 'nucleo/control.php';
+include 'nucleo/ConectorBasedeDatos.php';
+include 'nucleo/ConectorSQLite.php';
 include 'proyecto/control/principal.php';
 include 'proyecto/control/imagen.php';
 include 'proyecto/control/Error.php';
@@ -13,12 +15,14 @@ function get_url() {
 }
 //$control=new Principal();
 //$control->porDefecto(get_url());
+
 $ps=get_url();
 if(count($ps)<=1 || $ps[1]=="index.php"){
   $controlname="Principal";
 }else{
   $controlname=$ps[1]; //TODO: no siempre esta en 1	
 }
+
 if(class_exists($controlname)){
   $control=new $controlname();
 } else {	
