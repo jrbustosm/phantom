@@ -1,7 +1,7 @@
 <?php
 
-include 'nucleo/control.php';
-include 'nucleo/ConectorBasedeDatos.php';
+include 'nucleo/Control.php';
+include 'nucleo/ConectorBD.php';
 include 'nucleo/ConectorSQLite.php';
 include 'proyecto/control/principal.php';
 include 'proyecto/control/imagen.php';
