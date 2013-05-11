@@ -14,7 +14,11 @@ function get_url() {
 //$control=new Principal();
 //$control->porDefecto(get_url());
 $ps=get_url();
-$controlname=$ps[1]; //TODO: no siempre esta en 1
+if(count($ps)<=1 || $ps[1]=="index.php"){
+  $controlname="Principal";
+}else{
+  $controlname=$ps[1]; //TODO: no siempre esta en 1	
+}
 if(class_exists($controlname)){
   $control=new $controlname();
 } else {	
