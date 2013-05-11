@@ -1,4 +1,5 @@
 <?php
+
 include 'nucleo/control.php';
 include 'nucleo/ConectorBasedeDatos.php';
 include 'nucleo/ConectorSQLite.php';
@@ -13,8 +14,6 @@ function get_url() {
     if ($p!='') $parametros[] = $p;
   return $parametros;
 }
-//$control=new Principal();
-//$control->porDefecto(get_url());
 
 $ps=get_url();
 if(count($ps)<=1 || $ps[1]=="index.php"){
@@ -27,7 +26,8 @@ if(class_exists($controlname)){
   $control=new $controlname();
 } else {	
 	$control=new Error();
-   }
+}
+
 if($control instanceof Error || count($ps)<=2){
 	$control->porDefecto($ps);
 } else {
@@ -35,6 +35,7 @@ if($control instanceof Error || count($ps)<=2){
 	if(method_exists($control, $accion)){
 		$control->$accion($ps);
 	} else {
-		$control->porDefecto($ps);
+		$control->accionError($ps);
 	}
 }
+
