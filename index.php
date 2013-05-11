@@ -1,7 +1,7 @@
 <?php
 include 'nucleo/control.php';
 include 'proyecto/control/principal.php';
-
+include 'proyecto/control/imagen.php';
 function get_url() {
   $parametros = array();
   $url = parse_url($_SERVER['REQUEST_URI']);
@@ -9,7 +9,7 @@ function get_url() {
     if ($p!='') $parametros[] = $p;
   return $parametros;
 }
-$control=new Principal();
-$control->porDefecto(get_url());
-
+  $ps=get_url
+  print_r($ps);
+  
 
