@@ -21,4 +21,13 @@ class conectorSQLite extends ConectorBD{
     return $this->manejador->exec($sql);
   }
 
+  public function buscarTodos($tabla){
+    $registros = $this->manejador->query("SELECT * from $tabla");
+    $resultados = array();
+    while ($reg = $registros->fetchArray()) {
+      array_push($resultados, $reg);
+    }
+    return $resultados;
+  }
+
 }
