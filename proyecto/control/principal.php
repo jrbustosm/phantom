@@ -8,5 +8,6 @@ class Principal extends Control{
     );
     $this->mostrarVista("por_defecto", $datos);
   }
+
 }  
 

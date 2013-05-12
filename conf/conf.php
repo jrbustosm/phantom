@@ -27,6 +27,6 @@ $_BDNOMBRE = "foo";
 ###############################################
 
 $_URLBASE = "/web/phantom/";
-$_EXCLUDE = array("img","js","css","miscelaneos");
+$_EXCLUDE = array("img","js","css");
 
 
