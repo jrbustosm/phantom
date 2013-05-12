@@ -22,3 +22,11 @@ $_BDNOMBRE = "foo";
 #$_BDUSUARIO ="";
 #$_BDPASSWORD="";
 
+###############################################
+#Configuracion control de urls#
+###############################################
+
+$_URLBASE = "/web/phantom/";
+$_EXCLUDE = array("img","js","css","miscelaneos");
+
+
