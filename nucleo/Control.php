@@ -30,10 +30,12 @@ abstract class Control{
   */
   public function ejecutarAccion($accion, $parametros){
     if($accion=="") $this->porDefecto($parametros);
-    if(method_exists($this, $accion)){
-      $this->$accion($parametros);
-    } else {
-      $this->accionError($parametros);
+    else{
+      if(method_exists($this, $accion)){
+        $this->$accion($parametros);
+      } else {
+        $this->accionError($parametros);
+      }
     }
   }
 
