@@ -1,8 +1,10 @@
 <?php
 
-  include '../nucleo/ConectorBasedeDatos.php';
-  include '../nucleo/ConectorSQLite.php';
+  include 'nucleo/ConectorBD.php';
+  include 'nucleo/ConectorSQLite.php';
 		
+  unlink('datos/mi.bd');
+
   $con = new ConectorSqLite();
   $sql = "CREATE TABLE imagenes ( " .
          "id integer PRIMARY KEY, " .
@@ -11,6 +13,6 @@
 
   for($i=0; $i<=9; ++$i){
     $sql = "INSERT INTO imagenes(nombre) VALUES ('$i.png')"; 
-    $con->ececutar($sql);
+    $con->ejecutar($sql);
   }
 	

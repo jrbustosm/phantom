@@ -10,15 +10,15 @@ class conectorSQLite extends ConectorBD{
   }
 
   public function abrir(){
-    $this->manejador=sqlite_open("datos/mi.bd");
+    $this->manejador=new SQLite3("datos/mi.bd");
   }
 
   public function cerrar(){
-    sqlite_close($this->manejador);
+    $this->manejador->close();
   }
 
   public function ejecutar($sql){
-    return sqlite_exec($this->manejador, $sql);
+    return $this->manejador->exec($sql);
   }
 
 }
