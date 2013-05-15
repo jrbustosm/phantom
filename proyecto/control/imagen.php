@@ -2,8 +2,8 @@
 
 class imagen extends Control{
   public function porDefecto($parametros){
-    echo "Hola soy imagen por defecto";
-  }
+    $this->listar($parametros);
+    }
 
   public function listar($parametros){
     $con = new ConectorSQLITE();
