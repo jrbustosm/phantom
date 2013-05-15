@@ -26,7 +26,7 @@ $_BDNOMBRE = "foo";
 #Configuracion control de urls#
 ###############################################
 
-$_URLBASE = "/web/phantom/";
+$_URLBASE = "/phantom-master/";
 $_EXCLUDE = array("img","js","css");
 
 
