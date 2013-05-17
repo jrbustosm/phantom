@@ -1,4 +1,5 @@
 <?php
+
 class Principal extends Control{
 	
   public function porDefecto($parametros){
