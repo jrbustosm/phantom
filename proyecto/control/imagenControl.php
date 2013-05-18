@@ -6,10 +6,8 @@ class imagenControl extends Control{
   }
 
   public function listar($parametros){
-    $con = new ConectorSQLite();
-    $v = $con->buscarTodos("Imagenes");
     $datos = array(
-        "imagenes" => $v
+        "imagenes" => Imagen::buscarTodos()
         );
     $this->mostrarVista("listarImagenes", $datos);
   }

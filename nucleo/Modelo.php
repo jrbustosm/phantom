@@ -1,19 +1,28 @@
 <?php
 
-abstract class Modelo{
+trait MetodosEstaticos{
 
-  private static $con;
-  private static $nombre;
-
-  public function__construct(){
-    //TODO: esto esta mal
-    $this -> con = new ConectorSQLite();
-    $this -> nombre = $nombre;
-  }
-
-  public static function buscarTodos(){
-    return $this -> con ->buscarTodos($nombre);
+  public static function __callStatic($metodo, $argumentos){
+    if($argumentos) $argumentos = $argumentos[0];
+    $argumentos["__nombreTabla"] = self::$nombre;
+    return call_user_func( array("Modelo", "__" . $metodo), $argumentos );
   }
 
 }
+
+abstract class Modelo{
+
+  private static $con;
+
+  public static function static_init(){
+    self::$con = new ConectorSQLite();
+  }
+
+  public static function __buscarTodos($parametros){
+    return self::$con->buscarTodos($parametros['__nombreTabla']);
+  }
+
+}
+
+Modelo::static_init();
 
