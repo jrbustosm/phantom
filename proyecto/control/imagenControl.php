@@ -3,14 +3,14 @@
 class imagenControl extends Control{
   public function porDefecto($parametros){
     $this->listar($parametros);
-    }
+  }
 
   public function listar($parametros){
     $con = new ConectorSQLITE();
     $v = $con->buscarTodos("Imagenes");
     $datos = array(
-      "imagenes" => $v
-    );
+        "imagenes" => $v
+        );
     $this->mostrarVista("listarImagenes", $datos);
   }
 } 
