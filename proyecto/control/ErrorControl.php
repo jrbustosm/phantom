@@ -1,5 +1,5 @@
 <?php
-  class Error extends Control{
+  class ErrorControl extends Control{
     function porDefecto($parametros){
       echo "la pagina no existe ";
       print_r($parametros);

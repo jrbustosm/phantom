@@ -4,9 +4,9 @@ include 'conf/conf.php';
 include 'nucleo/Control.php';
 include 'nucleo/ConectorBD.php';
 include 'nucleo/ConectorSQLite.php';
-include 'proyecto/control/principal.php';
-include 'proyecto/control/imagen.php';
-include 'proyecto/control/Error.php';
+include 'proyecto/control/PrincipalControl.php';
+include 'proyecto/control/imagenControl.php';
+include 'proyecto/control/ErrorControl.php';
 
 function get_url($base) {
   $parametros = array();
@@ -22,9 +22,9 @@ $ps=get_url($_URLBASE);
 
 if(count($ps)==0 || $ps[0]=="index.php"){
   //Asignamos el control por defecto
-  $controlname="Principal"; 
+  $controlname="PrincipalControl"; 
 }else{
-  $controlname=$ps[0];
+  $controlname=$ps[0] . "Control";
 }
 
 if(in_array($controlname, $_EXCLUDE)){

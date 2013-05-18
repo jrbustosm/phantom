@@ -1,6 +1,6 @@
 <?php
 
-class imagen extends Control{
+class imagenControl extends Control{
   public function porDefecto($parametros){
     $this->listar($parametros);
     }

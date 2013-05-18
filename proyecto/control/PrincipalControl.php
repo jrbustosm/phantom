@@ -1,5 +1,5 @@
 <?php
-class Principal extends Control{
+class PrincipalControl extends Control{
 	
   public function porDefecto($parametros){
     $datos= array(
