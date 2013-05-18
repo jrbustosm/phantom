@@ -29,5 +29,5 @@ $_BDNOMBRE = "datos/mi.bd";
 $_URLBASE = "/phantom-master/";
 $_URLIMGS = $_URLBASE . "img/";
 $_URLEXCLUIR = array("img","js","css");
-
+$_CONTROL_INI = "imagen";
 

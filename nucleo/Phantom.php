@@ -30,9 +30,9 @@ class Phantom{
 
     if(count($ps)==0 || $ps[0]=="index.php"){
       //Asignamos el control por defecto
-      $controlname="PrincipalControl"; 
+      $controlname= "${GLOBALS['_CONTROL_INI']}Control"; 
     }else{
-      $controlname=$ps[0] . "Control";
+      $controlname= "${ps[0]}Control";
     }
 
     if(in_array($controlname, $_URLEXCLUIR)){
