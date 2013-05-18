@@ -27,6 +27,7 @@ $_BDNOMBRE = "foo";
 ###############################################
 
 $_URLBASE = "/phantom-master/";
+$_URLIMGS = $_URLBASE . "img/";
 $_URLEXCLUIR = array("img","js","css");
 
 
