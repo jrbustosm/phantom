@@ -1,12 +1,16 @@
 <?php
 
 include 'conf/conf.php';
-include 'nucleo/Control.php';
-include 'nucleo/ConectorBD.php';
-include 'nucleo/ConectorSQLite.php';
-include 'proyecto/control/PrincipalControl.php';
-include 'proyecto/control/imagenControl.php';
-include 'proyecto/control/ErrorControl.php';
+
+function __autoload($nombre_clase) {
+  $dirs = array("nucleo/","proyecto/control/","proyecto/modelo/");
+  foreach($dirs as $d){
+    if(file_exists($d . $nombre_clase . '.php')){
+      include $d . $nombre_clase . '.php';
+      return;
+    }
+  }
+}
 
 class Phantom{
 
@@ -41,7 +45,7 @@ class Phantom{
     if(class_exists($controlname)){
       $control=new $controlname();
     } else {	
-      $control=new Error();
+      $control=new ErrorControl();
     }
 
     $accion = "";

@@ -6,7 +6,7 @@ class imagenControl extends Control{
   }
 
   public function listar($parametros){
-    $con = new ConectorSQLITE();
+    $con = new ConectorSQLite();
     $v = $con->buscarTodos("Imagenes");
     $datos = array(
         "imagenes" => $v

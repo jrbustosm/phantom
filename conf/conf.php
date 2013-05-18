@@ -27,6 +27,6 @@ $_BDNOMBRE = "foo";
 ###############################################
 
 $_URLBASE = "/phantom-master/";
-$_EXCLUDE = array("img","js","css");
+$_URLEXCLUIR = array("img","js","css");
 
 
