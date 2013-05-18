@@ -11,11 +11,11 @@ $_EMAIL = "foo@server";
 #configuracion Base de datos#
 #############################
 
-$_BDMOTOR = "SQLITE";
-$_BDNOMBRE = "foo";
+$_BDMOTOR = "SQLite";
+$_BDNOMBRE = "datos/mi.bd";
 
 #En caso de que sea mysql descomentar
-#$_BDMOTOR = "MYSQL";
+#$_BDMOTOR = "MySQL";
 #$_BDNOMBRE ="";
 #$_BDSERVIDOR ="";
 #$_BDPUERTO ="";

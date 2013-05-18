@@ -1,4 +1,5 @@
-<?
+<?php
+
 class conectorSQLite extends ConectorBD{
 
   function __construct(){
@@ -10,7 +11,7 @@ class conectorSQLite extends ConectorBD{
   }
 
   public function abrir(){
-    $this->manejador=new SQLite3("datos/mi.bd");
+    $this->manejador=new SQLite3($GLOBALS['_BDNOMBRE']);
   }
 
   public function cerrar(){
