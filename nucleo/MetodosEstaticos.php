@@ -23,8 +23,8 @@ trait MetodosEstaticos{
    */
   public static function __callStatic($metodo, $argumentos){
     if($argumentos) $argumentos = $argumentos[0];
-    $argumentos["__nombreTabla"] = self::$nombre;
-    return call_user_func( array("Modelo", "__" . $metodo), $argumentos );
+    $argumentos["_nombreTabla"] = self::$nombre;
+    return call_user_func( array("Modelo", "_" . $metodo), $argumentos );
   }
 
 }

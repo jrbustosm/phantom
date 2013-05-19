@@ -43,14 +43,14 @@ abstract class Modelo{
    * unos parametros:
    *
    * <ul>
-   *   <li>__nombreTabla: Nombre de la tabla en donde va a buscar los datos</li>
+   *   <li>_nombreTabla: Nombre de la tabla en donde va a buscar los datos</li>
    * </ul>
    *
    * @param array parametros Arreglo asociativo con datos de la busqueda
    * @todo en estos momentos no esta devolviendo objetos si no un arreglo de datos
    */
-  public static function __buscarTodos($parametros){
-    return self::$con->buscarTodos($parametros['__nombreTabla']);
+  public static function _buscarTodos($parametros){
+    return self::$con->buscarTodos($parametros['_nombreTabla']);
   }
 
 }
