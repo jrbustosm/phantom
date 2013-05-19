@@ -30,7 +30,7 @@ abstract class Control{
    * @param string accion Accion a ejecutar
    * @param array parametros Arreglo asociativo con los parametros de la solicitud
    */
-  public function ejecutarAccion($accion="", $parametros=array()){
+  public function ejecutarAccion($accion="", array $parametros=array()){
     if($accion=="") $this->porDefecto($parametros);
     else{
       if(method_exists($this, $accion)){
@@ -46,7 +46,7 @@ abstract class Control{
    *
    * @param array parametros Arreglo asociativo con los parametros de la solicitud
    */
-  public function porDefecto($parametros){
+  public function porDefecto(array $parametros){
     echo 'Hola Mundo!!!';
   }
 
@@ -56,7 +56,7 @@ abstract class Control{
    *
    * @param array parametros Arreglo asociativo con los parametros de la solicitud
    */
-  public function accionError($parametros){
+  public function accionError(array $parametros){
     $this->porDefecto($parametros);
   }
 
@@ -68,7 +68,7 @@ abstract class Control{
     @param array datos Arreglo asociativos con los datos a mostrar en la vista
     @todo mejorar usando templates
    */
-  protected function mostrarVista($vista, $datos){
+  protected function mostrarVista($vista, array $datos){
     foreach($datos as $llave => $valor) $$llave = $valor;
     include("proyecto/vista/" . $vista . ".php");
   }

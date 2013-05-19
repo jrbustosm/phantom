@@ -2,7 +2,7 @@
 
 class PrincipalControl extends Control{
 
-  public function porDefecto($parametros){
+  public function porDefecto(array $parametros){
     $datos= array(
         "titulo"=>"Mi titulo",
         "contenido"=>"Contenido",

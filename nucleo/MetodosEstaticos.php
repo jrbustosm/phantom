@@ -21,7 +21,7 @@ trait MetodosEstaticos{
    * @param string metodo Nombre del método estatico a ejecutar
    * @param array argumentos Arreglo con los parametros de la llamada 
    */
-  public static function __callStatic($metodo, $argumentos){
+  public static function __callStatic($metodo, array $argumentos){
     if($argumentos) $argumentos = $argumentos[0];
     $argumentos["_nombreTabla"] = self::$nombre;
     return call_user_func( array("Modelo", "_" . $metodo), $argumentos );
