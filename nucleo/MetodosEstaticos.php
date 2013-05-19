@@ -11,6 +11,7 @@
  * @package nucleo
  * @since 0.1
  * @see Modelo
+ * @todo este trait puede ser reemplazado por el Uso de Enlaces Estáticos en Tiempo de ejecución para php 5.3
  */
 trait MetodosEstaticos{
 
@@ -23,7 +24,7 @@ trait MetodosEstaticos{
    */
   public static function __callStatic($metodo, array $argumentos){
     if($argumentos) $argumentos = $argumentos[0];
-    $argumentos["_nombreTabla"] = self::$nombre;
+    $argumentos["_nombreTabla"] = self::NOMBRE;
     return call_user_func( array("Modelo", "_" . $metodo), $argumentos );
   }
 

@@ -2,7 +2,7 @@
 
 class Imagen extends Modelo{
   
-  private static $nombre = "imagenes";
+  const NOMBRE = "imagenes";
 
   use MetodosEstaticos;
 
