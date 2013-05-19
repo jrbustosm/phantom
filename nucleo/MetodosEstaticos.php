@@ -11,6 +11,7 @@
  * @package nucleo
  * @since 0.1
  * @see Modelo
+ * @deprecated
  * @todo este trait puede ser reemplazado por el Uso de Enlaces Estáticos en Tiempo de ejecución para php 5.3
  */
 trait MetodosEstaticos{

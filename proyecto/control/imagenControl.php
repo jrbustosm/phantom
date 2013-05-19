@@ -7,7 +7,9 @@ class imagenControl extends Control{
   }
 
   public function listar(array $parametros){
-    $this->mostrarVista("listarImagenes", ["imagenes" => Imagen::buscarTodos()]);
+    $this->mostrarVista("listarImagenes", array(
+      "imagenes" => Imagen::buscarTodos()
+    ));
   }
 
 } 
