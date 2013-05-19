@@ -25,7 +25,8 @@ trait MetodosEstaticos{
   public static function __callStatic($metodo, array $argumentos){
     if($argumentos) $argumentos = $argumentos[0];
     $argumentos["_nombreTabla"] = self::NOMBRE;
-    return call_user_func( array("Modelo", "_" . $metodo), $argumentos );
+    $metodo = "_" . $metodo;
+    return parent::$metodo($argumentos);
   }
 
 }
