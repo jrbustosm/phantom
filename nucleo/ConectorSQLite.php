@@ -31,4 +31,9 @@ class conectorSQLite extends ConectorBD{
     return $resultados;
   }
 
+  public function buscarXPK($id, $tabla){
+    $registro = $this->manejador->query("SELECT * FROM $tabla WHERE id = $id");
+    return $registro->fetchArray();
+  }
+  
 }
