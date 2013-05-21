@@ -25,7 +25,19 @@
 abstract class Modelo{
 
   private static $con; //Manejador de base de datos
+  private $id;         //Identificador del registro
+  private $datos;      //Datos almacenados en el registro
 
+  /**
+   * Constructor
+   * 
+   * @param id integer Identificador del registro
+   */
+  function __construct($id){
+    $this->id = $id;
+    $this->datos = self::$con->buscarXPK($id, $this::NOMBRETABLA);
+  }
+  
   /**
    * Método que inicializa los atributos de clase
    */
