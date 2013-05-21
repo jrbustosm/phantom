@@ -25,19 +25,42 @@
 abstract class Modelo{
 
   private static $con; //Manejador de base de datos
-  private $id;         //Identificador del registro
   private $datos;      //Datos almacenados en el registro
 
   /**
    * Constructor
    * 
    * @param id integer Identificador del registro
+   * @todo generar una excepcion si los datos del array no concuerdan con las columnas de la tabla (obligatorios)
+   * @todo generar una excepcion si no se ingresan bien el número de argumentos pk
    */
-  function __construct($id){
-    $this->id = $id;
-    $this->datos = self::$con->buscarXPK($id, $this::NOMBRETABLA);
+  function __construct(){
+    if(func_num_args()==1){
+      $arg = func_get_arg(0);
+      if(is_array($arg)){
+        //Crear una instancia con los datos dados 
+        $this->datos = $arg;
+      }else{
+        //Buscar los datos dado un único id
+        $this->datos = self::$con->buscarXPK($arg, $this::NOMBRETABLA);
+      }
+    }else{
+      //Buscar los datos dado varios ids
+      $this->datos = self::$con->buscarXPK(func_get_args(), $this::NOMBRETABLA);
+    }
   }
   
+  /**
+   * Método para consultar propiedades del modelo
+   *
+   * @param propiedad string Propiedad a consultar
+   * @todo si ingreso una propiedad que no existe en la tabla debería generar una excepción
+   */
+  public function __get($propiedad){
+    if(isset($this->datos[$propiedad])) return $this->datos[$propiedad];
+    return NULL;
+  }
+
   /**
    * Método que inicializa los atributos de clase
    */
@@ -51,14 +74,17 @@ abstract class Modelo{
    * Método que retorna todos los registros de una base de datos de acurdo a 
    * unos parametros:
    *
-   * @todo en estos momentos no esta devolviendo objetos si no un arreglo de datos
+   * @todo el foreach puede mejorar su eficiencia (1/2) si buscarTodos (buscar) retorna un generardos
    */
   public static function buscarTodos(){
-    return self::$con->buscarTodos(static::NOMBRETABLA);
+    $regs = self::$con->buscarTodos(static::NOMBRETABLA);
+    $objs = array();
+    $class = get_called_class();
+    foreach($regs as $reg){
+      array_push($objs, new $class($reg));
+    }
+    return $objs;
   }
 
 }
-
-//Inicializamos los atributos de clase de la clase Modelo
-Modelo::static_init();
 

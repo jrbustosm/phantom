@@ -6,16 +6,16 @@
 </style>
 
 <?php
-//TODO: esto se debe cambiar por un foreach que itere sobre objetos y no sobre un arreglo de datos
-for($i=0; $i<count($imagenes); ++$i):
-  $nombre = $imagenes[$i]['nombre'];
+$i=0;
+foreach($imagenes as $img):
 ?>
 
-<img src = "<?= "${GLOBALS['_URLIMGS']}/$nombre" ?>" />
+<img src = "<?= "${GLOBALS['_URLIMGS']}/{$img->nombre}" ?>" />
 
 <?php
   if($i%5==4) echo "<br />";
-endfor;
+  ++$i;
+endforeach;
 
 $img = new Imagen(1);
 print_r($img);

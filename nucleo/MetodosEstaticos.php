@@ -17,7 +17,7 @@
 trait MetodosEstaticos{
 
   /**
-   + Método que llama los métodos estaticos de la clase padre, especialmente
+   * Método que llama los métodos estaticos de la clase padre, especialmente
    * diseñado para las clases que heredan de la clase Modelo {@link Modelo}
    *
    * @param string metodo Nombre del método estatico a ejecutar

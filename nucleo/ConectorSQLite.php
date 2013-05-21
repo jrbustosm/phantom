@@ -23,17 +23,22 @@ class conectorSQLite extends ConectorBD{
   }
 
   public function buscarTodos($tabla){
-    $registros = $this->manejador->query("SELECT * from $tabla");
+    return $this->buscar($tabla);
+  }
+
+  public function buscarXPK($id, $tabla){
+    return $this->buscar($tabla, "id=$id")[0];
+  }
+  
+  public function buscar($tabla, $where=""){
+    $sql = "SELECT * FROM $tabla";
+    if($where) $sql .= " WHERE $where";
+    $registros = $this->manejador->query($sql);
     $resultados = array();
     while ($reg = $registros->fetchArray()) {
       array_push($resultados, $reg);
     }
     return $resultados;
-  }
-
-  public function buscarXPK($id, $tabla){
-    $registro = $this->manejador->query("SELECT * FROM $tabla WHERE id = $id");
-    return $registro->fetchArray();
   }
   
 }

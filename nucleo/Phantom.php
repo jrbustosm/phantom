@@ -7,6 +7,10 @@ function __autoload($nombre_clase) {
   foreach($dirs as $d){
     if(file_exists($d . $nombre_clase . '.php')){
       include $d . $nombre_clase . '.php';
+      if($nombre_clase == "Modelo"){
+        //Inicializamos los atributos de clase de la clase Modelo
+        Modelo::static_init();
+      }
       return;
     }
   }
