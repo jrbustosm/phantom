@@ -55,6 +55,7 @@ abstract class Modelo{
    *
    * @param propiedad string Propiedad a consultar
    * @todo si ingreso una propiedad que no existe en la tabla debería generar una excepción
+   * @return TODO
    */
   public function __get($propiedad){
     if(isset($this->datos[$propiedad])) return $this->datos[$propiedad];
@@ -71,19 +72,12 @@ abstract class Modelo{
   }
 
   /**
-   * Método que retorna todos los registros de una base de datos de acurdo a 
-   * unos parametros:
+   * Método que retorna todos los registros de una tabla de una base de datos
    *
-   * @todo el foreach puede mejorar su eficiencia (1/2) si buscarTodos (buscar) retorna un generardos
+   * @return TODO
    */
   public static function buscarTodos(){
-    $regs = self::$con->buscarTodos(static::NOMBRETABLA);
-    $objs = array();
-    $class = get_called_class();
-    foreach($regs as $reg){
-      array_push($objs, new $class($reg));
-    }
-    return $objs;
+    return self::$con->buscarTodos(static::NOMBRETABLA, get_called_class());
   }
 
 }
