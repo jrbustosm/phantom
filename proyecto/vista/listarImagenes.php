@@ -1,4 +1,3 @@
-
 <style>
   img{
     width:150px;
@@ -17,3 +16,6 @@ for($i=0; $i<count($imagenes); ++$i):
 <?php
   if($i%5==4) echo "<br />";
 endfor;
+
+$img = new Imagen(1);
+print_r($img);
