@@ -15,5 +15,6 @@ abstract class ConectorBD{
   abstract public function cerrar();
   abstract public function ejecutar($sql);
   abstract public function buscarTodos($tabla);
+  abstract public function buscarXPK($id, $tabla);
 
 }
