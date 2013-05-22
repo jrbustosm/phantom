@@ -29,10 +29,15 @@ abstract class Modelo{
 
   /**
    * Constructor
-   * 
-   * @param id integer Identificador del registro
+   *
+   * __construct($id1, [$id2, ... , $idn])
+   * __construct(array $datos)
+   *
+   * @param ids string Identificadores del registro
+   * @param datos array Arreglo asociativo con los datos del registro
    * @todo generar una excepcion si los datos del array no concuerdan con las columnas de la tabla (obligatorios)
    * @todo generar una excepcion si no se ingresan bien el número de argumentos pk
+   * @todo no olvidar etiqueta exception de phpdoc
    */
   function __construct(){
     if(func_num_args()==1){
@@ -55,7 +60,7 @@ abstract class Modelo{
    *
    * @param propiedad string Propiedad a consultar
    * @todo si ingreso una propiedad que no existe en la tabla debería generar una excepción
-   * @return TODO
+   * @return mixed Valor de la propiedad solicitada, si la propiedad existe pero no esta definida retorna NULL
    */
   public function __get($propiedad){
     if(isset($this->datos[$propiedad])) return $this->datos[$propiedad];
@@ -74,7 +79,7 @@ abstract class Modelo{
   /**
    * Método que retorna todos los registros de una tabla de una base de datos
    *
-   * @return TODO
+   * @return array Arreglo de con todos los objetos de tipo modelo que se encuentra en la tabla
    */
   public static function buscarTodos(){
     return self::$con->buscarTodos(static::NOMBRETABLA, get_called_class());
