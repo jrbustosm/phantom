@@ -45,14 +45,13 @@ class Phantom{
   /**
    * array get_url($base)
    *
-   * @param base string
    * @return array Arreglo con los datos de la url, en la primera posición el control
    *               en la segunda posición la acción a ejecutar, y de la tercera en
    *               adelante los parametros de la petición
    */
-  private static function get_url($base) {
+  private static function get_url() {
     $parametros = array();
-    $base = str_replace("/","\/",$base);
+    $base = str_replace("/","\/",$GLOBALS['_URLBASE']);
     //Hacemos un saneamiento en el URI de la solicitud
     $url = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL);
     //Extraemos el path de la URL
@@ -76,7 +75,7 @@ class Phantom{
    */
   public static function iniciar(){
 
-    $ps = self::get_url($GLOBALS['_URLBASE']);
+    $ps = self::get_url();
 
     if(count($ps)==0 || $ps[0]=="index.php"){
       //Asignamos el control por defecto desde la configuración
