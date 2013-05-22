@@ -55,9 +55,9 @@ class Phantom{
     //Hacemos un saneamiento en el URI de la solicitud
     $url = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL);
     //Extraemos el path de la URL
-    $url = parse_url($url)['path'];
+    $url = parse_url($url);
     //Eliminamos la Base de la solicitud
-    $url = preg_replace("/$base/", "", $url, 1);
+    $url = preg_replace("/$base/", "", $url['path'], 1);
     foreach(explode("/", $url) as $p)
       if ($p!='') $parametros[] = $p;
     return $parametros;
