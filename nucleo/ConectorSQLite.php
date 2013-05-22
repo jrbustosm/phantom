@@ -27,7 +27,8 @@ class conectorSQLite extends ConectorBD{
   }
 
   public function buscarXPK($id, $tabla, $class=""){
-    return $this->buscar($tabla, "id=$id", $class)[0];
+    $v = $this->buscar($tabla, "id=$id", $class)
+    return $v[0];
   }
   
   /**
