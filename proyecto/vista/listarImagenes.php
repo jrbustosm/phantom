@@ -10,7 +10,7 @@ $i=0;
 foreach($imagenes as $img):
 ?>
 
-<img src = "<?= "${GLOBALS['_URLIMGS']}/$img->nombre" ?>" />
+<img src = "<?= "${GLOBALS['_URLIMGS']}/¨{$img->nombre}" ?>" />
 
 <?php
   if($i%5==4) echo "<br />";
