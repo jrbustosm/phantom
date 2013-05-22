@@ -39,7 +39,6 @@ function __autoload($nombre_clase) {
  * @version $Id$
  * @package nucleo
  * @since 0.1
- * @todo modificar ger_url usando parse_url que es del core de php
  */
 class Phantom{
 
@@ -54,9 +53,13 @@ class Phantom{
   private static function get_url($base) {
     $parametros = array();
     $base = str_replace("/","\/",$base);
-    $url = preg_replace("/$base/", "", $_SERVER['REQUEST_URI'], 1);
-    $url = parse_url($url);
-    foreach(explode("/", $url['path']) as $p)
+    //Hacemos un saneamiento en el URI de la solicitud
+    $url = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL);
+    //Extraemos el path de la URL
+    $url = parse_url($url)['path'];
+    //Eliminamos la Base de la solicitud
+    $url = preg_replace("/$base/", "", $url, 1);
+    foreach(explode("/", $url) as $p)
       if ($p!='') $parametros[] = $p;
     return $parametros;
   }
