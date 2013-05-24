@@ -75,6 +75,14 @@ abstract class Modelo{
     $conclass = "Conector" . $GLOBALS['_BDMOTOR'];
     self::$con = new $conclass();
   }
+  
+  /**
+   * Método que iniciliza la descripción del esquema de la tabla
+   */
+  public static function cargarDesc(){
+    $class = get_called_class();
+    $class::$DATOSTABLA['CAMPOS'] = self::$con->desc(static::$DATOSTABLA['NOMBRETABLA']);
+  }
 
   /**
    * Método que retorna todos los registros de una tabla de una base de datos
@@ -85,10 +93,6 @@ abstract class Modelo{
     return self::$con->buscarTodos(static::$DATOSTABLA['NOMBRETABLA'], get_called_class());
   }
 
-  public static function cargarDesc(){
-    $class = get_called_class();
-    $class::$DATOSTABLA['CAMPOS'] = self::$con->desc(static::$DATOSTABLA['NOMBRETABLA']);
-  }
 
 }
 
