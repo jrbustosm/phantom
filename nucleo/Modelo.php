@@ -47,11 +47,11 @@ abstract class Modelo{
         $this->datos = $arg;
       }else{
         //Buscar los datos dado un único id
-        $this->datos = self::$con->buscarXPK($arg, $this::NOMBRETABLA);
+        $this->datos = self::$con->buscarXPK($arg, $this::$DATOSTABLA['NOMBRETABLA']);
       }
     }else{
       //Buscar los datos dado varios ids
-      $this->datos = self::$con->buscarXPK(func_get_args(), $this::NOMBRETABLA);
+      $this->datos = self::$con->buscarXPK(func_get_args(), $this::$DATOSTABLA['NOMBRETABLA']);
     }
   }
   
@@ -82,7 +82,12 @@ abstract class Modelo{
    * @return array Arreglo de con todos los objetos de tipo modelo que se encuentra en la tabla
    */
   public static function buscarTodos(){
-    return self::$con->buscarTodos(static::NOMBRETABLA, get_called_class());
+    return self::$con->buscarTodos(static::$DATOSTABLA['NOMBRETABLA'], get_called_class());
+  }
+
+  public static function cargarDesc(){
+    $class = get_called_class();
+    $class::$DATOSTABLA['CAMPOS'] = self::$con->desc(static::$DATOSTABLA['NOMBRETABLA']);
   }
 
 }

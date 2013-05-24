@@ -19,3 +19,9 @@ endforeach;
 
 $img = new Imagen(1);
 print_r($img);
+
+echo "<br>";
+echo "<br>";
+
+print_r(Imagen::$DATOSTABLA);
+

@@ -2,7 +2,9 @@
 
 class Imagen extends Modelo{
   
-  const NOMBRETABLA = "imagenes";
+  public static $DATOSTABLA = array(
+    "NOMBRETABLA" => "imagenes"
+  );
 
   /**
    * Constructor

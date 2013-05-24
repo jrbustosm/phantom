@@ -51,19 +51,25 @@ abstract class ConectorBD{
 
   /**
    * buscarTodos
-   * @todo este metodo no sea abstracto
    */
-  abstract public function buscarTodos($tabla);
+  public function buscarTodos($tabla, $class=""){
+    return $this->buscar($tabla, "", $class);
+  }
 
   /**
    * buscarXPK
-   * @todo este metodo no sea abstracto
+   * @todo mejorar IDs
    */
-  abstract public function buscarXPK($id, $tabla);
-
+  public function buscarXPK($id, $tabla, $class=""){
+    $v = $this->buscar($tabla, "id=$id", $class);
+    return $v[0];
+  }
+  
   /**
    * buscar
    */
   abstract public function buscar($tabla, $where);
+
+  abstract public function desc($tabla);
 
 }

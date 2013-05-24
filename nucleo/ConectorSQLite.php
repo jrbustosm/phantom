@@ -22,15 +22,6 @@ class conectorSQLite extends ConectorBD{
     return $this->manejador->exec($sql);
   }
 
-  public function buscarTodos($tabla, $class=""){
-    return $this->buscar($tabla, "", $class);
-  }
-
-  public function buscarXPK($id, $tabla, $class=""){
-    $v = $this->buscar($tabla, "id=$id", $class);
-    return $v[0];
-  }
-  
   /**
    *
    * @todo se puede mejorar con generadores php 5.5
@@ -39,12 +30,34 @@ class conectorSQLite extends ConectorBD{
     $sql = "SELECT * FROM $tabla";
     if($where) $sql .= " WHERE $where";
     $registros = $this->manejador->query($sql);
+    return $this->toArray($registros, $class);
+  }
+  
+  public function desc($tabla){
+    $sql = "PRAGMA table_info($tabla)";
+    $registros = $this->manejador->query($sql);
+    $v = $this->toArray($registros);
+    $campos = array();
+    $mapa = array(
+      "nombre"=>"name",
+      "pk"=>"pk",
+      "noNulo"=>"notnull",
+      "valorDefecto"=>"dflt_value",
+      "tipo"=>"type",
+    );
+    foreach($v as $fila){
+      array_push($campos, new Campo($fila, $mapa));
+    }
+    return $campos;
+  }
+
+  private function toArray($rs, $class=""){
     $resultados = array();
-    while ($reg = $registros->fetchArray()) {
+    while ($reg = $rs->fetchArray()) {
       if($class) array_push($resultados, new $class($reg));
       else array_push($resultados, $reg);
     }
     return $resultados;
   }
-  
+
 }

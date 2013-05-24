@@ -15,6 +15,8 @@ function __autoload($nombre_clase) {
       if($nombre_clase == "Modelo"){
         //Inicializamos los atributos de clase de la clase Modelo
         Modelo::static_init();
+      }else if(is_subclass_of($nombre_clase, "Modelo")){
+        $nombre_clase::cargarDesc();
       }
       return;
     }
