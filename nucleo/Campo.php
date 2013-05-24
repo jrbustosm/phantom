@@ -16,7 +16,8 @@ class Campo{
       $this->valorDefecto = func_get_arg(3);
       $this->pk = func_get_arg(4);
     }else if(func_num_args()==2){
-      if(!is_array(func_get_arg(0)) || !is_array(func_get_arg(1))) throw new Exception('Datos incorrectos. No son arreglos');
+      if(!is_array(func_get_arg(0)) || !is_array(func_get_arg(1)))
+        throw new Exception('Datos incorrectos. No son arreglos');
       $datos = func_get_arg(0);
       $mapa = func_get_arg(1);
       $keys = get_class_vars(__class__);
@@ -25,7 +26,8 @@ class Campo{
         throw new Exception('El Mapa esta mal descrito');
       }else{
         foreach(array_keys($keys) as $k){
-          if(!array_key_exists($mapa[$k], $datos)) throw new Exception('Datos incorrectos para fabricar campo');
+          if(!array_key_exists($mapa[$k], $datos))
+            throw new Exception('Datos incorrectos para fabricar campo');
           $this->$k = $datos[$mapa[$k]];
         }
       }

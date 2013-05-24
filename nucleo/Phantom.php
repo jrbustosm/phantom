@@ -11,11 +11,13 @@ function __autoload($nombre_clase) {
   $dirs = array("nucleo/","proyecto/control/","proyecto/modelo/");
   foreach($dirs as $d){
     if(file_exists($d . $nombre_clase . '.php')){
-      include $d . $nombre_clase . '.php';
+      include_once $d . $nombre_clase . '.php';
       if($nombre_clase == "Modelo"){
         //Inicializamos los atributos de clase de la clase Modelo
         Modelo::static_init();
       }else if(is_subclass_of($nombre_clase, "Modelo")){
+        //Inicializamos los atributos de la tabla en particular, ej: los campos 
+        //que la componen
         $nombre_clase::cargarDesc();
       }
       return;
