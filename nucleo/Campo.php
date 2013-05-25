@@ -37,6 +37,26 @@ class Campo{
   /**
    * __constructor($nombre, $tipo, $noNulo, $valorDefecto, $pk)
    * __construc(array $datos, array $mapa)
+   *
+   * Ejemplo de datos y mapa
+   *
+   * <code><pre>
+   * $datos = array(
+   *   "ej1" => "nombreFoo",
+   *   "ej2" => "tipoFoo",
+   *   "ej3" => false,
+   *   "ej4" => "",
+   *   "ej5" => false
+   * );
+   *
+   * $mapa = array(
+   *   "nombre" => "ej1",
+   *   "tipo" => "ej2",
+   *   "noNulo" => "ej3",
+   *   "valorDefecto" => "ej4",
+   *   "pk" => "ej5"
+   * );
+   * </pre></code>
    * 
    * @param nombre string Nombre del campo
    * @param tipo string Tipo de datos de la columna (ej. integer, text, etc.)
