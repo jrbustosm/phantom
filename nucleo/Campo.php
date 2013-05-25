@@ -40,10 +40,12 @@ class Campo{
       throw new Exception('Tipo de campo erroneo.');
     if(!(is_bool($this->noNulo) || is_int($this->noNulo)))
       throw new Exception('No se puede construir el campo. No nulo debe ser bool');
+    $this->noNulo = (bool)$this->noNulo;
     if(!(is_scalar($this->valorDefecto) || $this->valorDefecto==""))
       throw new Exception('No se puede construir el campo. Valor por defecto debe ser escalar');
     if(!(is_bool($this->pk) || is_int($this->pk)))
       throw new Exception('No se puede construir el campo. PK debe ser bool');
+    $this->pk = (bool)$this->pk;
   }
 
   public function __get($propiedad){

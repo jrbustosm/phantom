@@ -23,5 +23,9 @@ print_r($img);
 echo "<br>";
 echo "<br>";
 
-print_r(Imagen::$DATOSTABLA);
+foreach(Imagen::$DATOSTABLA["CAMPOS"] as $k => $campo){
+  echo "$k: ";
+  print_r($campo);
+  echo "<br>";
+}
 
