@@ -38,6 +38,7 @@ abstract class Modelo{
    * @todo generar una excepcion si los datos del array no concuerdan con las columnas de la tabla (obligatorios)
    * @todo generar una excepcion si no se ingresan bien el número de argumentos pk
    * @todo no olvidar etiqueta exception de phpdoc
+   * @todo mejorar el constructor usando diff con los campos de la tabla
    */
   function __construct(){
     if(func_num_args()==1){

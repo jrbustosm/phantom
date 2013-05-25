@@ -4,7 +4,7 @@
  * ConectorSQLite
  *
  * @author Jose Ricardo Bustos Molina <jrbustosm@gmail.com>
- * @link https://github.com/jrbustosm/phantom/blob/master/nucleo/Modelo.php
+ * @link https://github.com/jrbustosm/phantom/blob/master/nucleo/ConectorSQLite.php
  * @license GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
  * 
 */
@@ -50,6 +50,7 @@ class conectorSQLite extends ConectorBD{
    *
    * Ejecuta una sentencia SQL en el manejador de Bases de Datos
    *
+   * @param sql string Sentencia SQL a ejecutar
    * @return mixed El sesultado de ejecutar esta sentencia
    * @override
    */

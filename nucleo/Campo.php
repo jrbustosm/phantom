@@ -1,5 +1,31 @@
 <?php
 
+/**
+ * Campo
+ *
+ * @author Jose Ricardo Bustos Molina <jrbustosm@gmail.com>
+ * @link https://github.com/jrbustosm/phantom/blob/master/nucleo/Campo.php
+ * @license GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
+ * 
+*/
+
+/**
+ * Clase Campo
+ * 
+ * Es la representación de una columna de la tabla de una base de datos en un modelo POO
+ *
+ * @property nombre string Nombre del campo
+ * @property tipo string Tipo de datos de la columna (ej. integer, text, etc.)
+ * @property noNulo bool Indica si el campo es obligatorio o no
+ * @property valorDefecto scalar Valor por defecto en el caso de que no sea obligatorio
+ * @property pk bool Indica si el campo es una llave primaria
+ *
+ * @author Jose Ricardo Bustos Molina <jrbustosm@gmail.com>
+ * @version $Id$
+ * @package nucleo
+ * @since 0.1
+ * @see Modelo
+ */
 class Campo{
 
   private $nombre;
@@ -8,6 +34,19 @@ class Campo{
   private $valorDefecto;
   private $pk;
 
+  /**
+   * __constructor($nombre, $tipo, $noNulo, $valorDefecto, $pk)
+   * __construc(array $datos, array $mapa)
+   * 
+   * @param nombre string Nombre del campo
+   * @param tipo string Tipo de datos de la columna (ej. integer, text, etc.)
+   * @param noNulo bool Indica si el campo es obligatorio o no
+   * @param valorDefecto scalar Valor por defecto en el caso de que no sea obligatorio
+   * @param pk bool Indica si el campo es una llave primaria
+   * @param datos array Arreglo asociativo con la información sobre el campo
+   * @param mapa array Arreglo asociativo que mapea las llaves de los datos con
+   *        las propiedades de la clase Campo
+   */
   function __construct(){
     if(func_num_args()==5){
       $this->nombre = func_get_arg(0);
@@ -16,6 +55,7 @@ class Campo{
       $this->valorDefecto = func_get_arg(3);
       $this->pk = func_get_arg(4);
     }else if(func_num_args()==2){
+      //Si se ingresan dos parametros estos deben ser arreglos
       if(!is_array(func_get_arg(0)) || !is_array(func_get_arg(1)))
         throw new Exception('Datos incorrectos. No son arreglos');
       $datos = func_get_arg(0);
@@ -23,10 +63,13 @@ class Campo{
       $keys = get_class_vars(__class__);
       $diffKeys = array_diff_key($keys, $mapa);
       if($diffKeys){
+        //Si el archivo mapa no tiene las mismas llaves que las propiedades de la 
+        //clase Campo se genera una excepción
         throw new Exception('El Mapa esta mal descrito');
       }else{
         foreach(array_keys($keys) as $k){
           if(!array_key_exists($mapa[$k], $datos))
+            //Si los datos no tienen los datos completos
             throw new Exception('Datos incorrectos para fabricar campo');
           $this->$k = $datos[$mapa[$k]];
         }
@@ -34,6 +77,7 @@ class Campo{
     }else{
       throw new Exception('Datos incorrectos');
     }
+    //Se debe comprobar el tipo y la integridad de la información
     if(!is_string($this->nombre))
       throw new Exception('Nombre de campo erroneo.');
     if(!is_string($this->tipo))
@@ -48,6 +92,12 @@ class Campo{
     $this->pk = (bool)$this->pk;
   }
 
+  /**
+   * Método para consultar propiedades del campo
+   *
+   * @param propiedad string Propiedad a consultar
+   * @return mixed Valor de la propiedad solicitada
+   */
   public function __get($propiedad){
     return $this->$propiedad;
   }
