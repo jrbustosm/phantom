@@ -1,5 +1,25 @@
 <?php
 
+/**
+ * ConectorSQLite
+ *
+ * @author Jose Ricardo Bustos Molina <jrbustosm@gmail.com>
+ * @link https://github.com/jrbustosm/phantom/blob/master/nucleo/Modelo.php
+ * @license GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
+ * 
+*/
+
+/**
+ * Clase ConectorSQLite
+ * 
+ * Adaptador para manejar una conexión a una base de datos en SQLite
+ *
+ * @author Jose Ricardo Bustos Molina <jrbustosm@gmail.com>
+ * @version $Id$
+ * @package nucleo
+ * @since 0.1
+ * @see ConectorBD
+ */
 class conectorSQLite extends ConectorBD{
 
   /**
