@@ -15,6 +15,9 @@
  * Es la representación de una tabla de una base de datos en un modelo POO
  *
  * @property ConectorBD $con Manejador de Base de Datos
+ * @property array $datos Datos del registro
+ * @property array $mapFuncTipo arraglo que mapea los tipos de datos con la
+ *           función que va a evaluar los datos de este tipo
  *
  * @author Jose Ricardo Bustos Molina <jrbustosm@gmail.com>
  * @version $Id$
@@ -26,6 +29,11 @@ abstract class Modelo{
 
   private static $con; //Manejador de base de datos
   private $datos;      //Datos almacenados en el registro
+
+  private static $mapFuncTipo = array(
+    "int" => "is_int",
+    "integer" => "is_int",
+  );
 
   /**
    * Constructor
@@ -65,10 +73,11 @@ abstract class Modelo{
    * Método para consultar propiedades del modelo
    *
    * @param string $propiedad Propiedad a consultar
-   * @todo si ingreso una propiedad que no existe en la tabla debería generar una excepción
    * @return mixed Valor de la propiedad solicitada, si la propiedad existe pero no esta definida retorna NULL
    */
   public function __get($propiedad){
+    if(!in_array($propiedad, array_keys($this::$DATOSTABLA['CAMPOS'])))
+      throw new Exception('Propiedad inexistente');
     if(isset($this->datos[$propiedad])) return $this->datos[$propiedad];
     return NULL;
   }
@@ -114,16 +123,14 @@ abstract class Modelo{
    *
    * Verifica si el tipo de un dato coincide con el tipo solicitado
    *
-   * @todo Se puede fabricar un arreglo asociativo que asocie los tipos con las funciones a comprobar
+   * @todo Que pasa si el tipo es desconocido? un warning? un error? nada?
    * @param mixed $valor Dato a comprobar su tipo
    * @param string $tipo Tipo a verificar
    * @return bool Verdadero si el dato coincide con el tipo solicitado
    */
   private static function verificarTipo($valor, $tipo){
-    if($tipo=="integer" || $tipo=="int"){
-      return is_int($valor);
-    }
-    return true;
+    $func = self::$mapFuncTipo[$tipo];
+    return $func($valor);
   }
 
 }
