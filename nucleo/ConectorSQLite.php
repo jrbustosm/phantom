@@ -20,7 +20,7 @@
  * @since 0.1
  * @see ConectorBD
  */
-class conectorSQLite extends ConectorBD{
+class ConectorSQLite extends ConectorBD{
 
   /**
    * abrir
@@ -50,7 +50,7 @@ class conectorSQLite extends ConectorBD{
    *
    * Ejecuta una sentencia SQL en el manejador de Bases de Datos
    *
-   * @param sql string Sentencia SQL a ejecutar
+   * @param string $sql Sentencia SQL a ejecutar
    * @return mixed El sesultado de ejecutar esta sentencia
    * @override
    */
@@ -64,9 +64,9 @@ class conectorSQLite extends ConectorBD{
    * Busca un grupo de registros en una tabla de acuerdo a ciertos criterios
    *
    * @todo se puede mejorar con generadores php 5.5
-   * @param tabla string Nombre de la tabla donde buscar los datos
-   * @param where string Criterios de busqueda de la sentencia select en formato SQL
-   * @param class string Nombre de la clase con la que se generá las instancias de 
+   * @param string $tabla Nombre de la tabla donde buscar los datos
+   * @param string $where Criterios de busqueda de la sentencia select en formato SQL
+   * @param string $class Nombre de la clase con la que se generá las instancias de 
    *                     la salida, si es igual a vacio se retorna un arreglo de arreglos
    * @return array Un arreglo de objetos de tipo class o arrays, como resultado de buscar
    *         los registros en la tabla y criterios de indicados
@@ -84,7 +84,7 @@ class conectorSQLite extends ConectorBD{
    *
    * Busca la descripcción de las columnas de una tabla en una base de datos de SQLite
    *
-   * @param tabla string Nombre d ela tabla a describir
+   * @param string $tabla Nombre d ela tabla a describir
    * @return array Un arreglo asociativo de Objetos de tipo Campos
    * @override
    */
@@ -113,8 +113,8 @@ class conectorSQLite extends ConectorBD{
    *
    * Convierte una busqueda a un Array
    *
-   * @param rs resource Busqueda echa a la base de datos
-   * @param class string Nombre de la clase con la que se generá las instancias de 
+   * @param resource $rs Busqueda echa a la base de datos
+   * @param string $class Nombre de la clase con la que se generá las instancias de 
    *                     la salida, si es igual a vacio se retorna un arreglo de arreglos
    * @return array Arreglo de objetos de tipo class
    */

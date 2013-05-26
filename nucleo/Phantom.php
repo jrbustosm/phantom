@@ -2,9 +2,12 @@
 
 include 'conf/conf.php';
 
-/*
+/**
+ * __autoload
+ *
  * Función para la autocarga de clases
  *
+ * @param string $nombre_clase Nombre de la clase a incluir
  */
 function __autoload($nombre_clase) {
   //Directorios donde buscar las clases

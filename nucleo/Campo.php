@@ -14,11 +14,11 @@
  * 
  * Es la representación de una columna de la tabla de una base de datos en un modelo POO
  *
- * @property nombre string Nombre del campo
- * @property tipo string Tipo de datos de la columna (ej. integer, text, etc.)
- * @property noNulo bool Indica si el campo es obligatorio o no
- * @property valorDefecto scalar Valor por defecto en el caso de que no sea obligatorio
- * @property pk bool Indica si el campo es una llave primaria
+ * @property-read string $nombre Nombre del campo
+ * @property-read string $tipo Tipo de datos de la columna (ej. integer, text, etc.)
+ * @property-read bool $noNulo Indica si el campo es obligatorio o no
+ * @property-read scalar $valorDefecto Valor por defecto en el caso de que no sea obligatorio
+ * @property-read bool $pk Indica si el campo es una llave primaria
  *
  * @author Jose Ricardo Bustos Molina <jrbustosm@gmail.com>
  * @version $Id$
@@ -58,13 +58,13 @@ class Campo{
    * );
    * </pre></code>
    * 
-   * @param nombre string Nombre del campo
-   * @param tipo string Tipo de datos de la columna (ej. integer, text, etc.)
-   * @param noNulo bool Indica si el campo es obligatorio o no
-   * @param valorDefecto scalar Valor por defecto en el caso de que no sea obligatorio
-   * @param pk bool Indica si el campo es una llave primaria
-   * @param datos array Arreglo asociativo con la información sobre el campo
-   * @param mapa array Arreglo asociativo que mapea las llaves de los datos con
+   * @param string $nombre Nombre del campo
+   * @param string $tipo Tipo de datos de la columna (ej. integer, text, etc.)
+   * @param bool $noNulo Indica si el campo es obligatorio o no
+   * @param scalar $valorDefecto Valor por defecto en el caso de que no sea obligatorio
+   * @param bool $pk Indica si el campo es una llave primaria
+   * @param array $datos Arreglo asociativo con la información sobre el campo
+   * @param array $mapa Arreglo asociativo que mapea las llaves de los datos con
    *        las propiedades de la clase Campo
    */
   function __construct(){
@@ -115,7 +115,7 @@ class Campo{
   /**
    * Método para consultar propiedades del campo
    *
-   * @param propiedad string Propiedad a consultar
+   * @param string $propiedad Propiedad a consultar
    * @return mixed Valor de la propiedad solicitada
    */
   public function __get($propiedad){

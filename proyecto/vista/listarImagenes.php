@@ -29,3 +29,8 @@ foreach(Imagen::$DATOSTABLA["CAMPOS"] as $k => $campo){
   echo "<br>";
 }
 
+echo "<br>";
+print_r(Imagen::$DATOSTABLA['PKS']);
+echo "<br>";
+print_r(Imagen::$DATOSTABLA['OBLIGATORIOS']);
+

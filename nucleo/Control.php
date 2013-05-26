@@ -27,8 +27,8 @@ abstract class Control{
    * Este método Ejecuta la accion indicada, si la accion no existe ejecuta el método
    * 'accionError', si no se indica ninguna accion ejecuta el método 'porDefecto'
    *
-   * @param string accion Accion a ejecutar
-   * @param array parametros Arreglo asociativo con los parametros de la solicitud
+   * @param string $accion Accion a ejecutar
+   * @param array $parametros Arreglo asociativo con los parametros de la solicitud
    */
   public function ejecutarAccion($accion="", array $parametros=array()){
     if($accion=="") $this->porDefecto($parametros);
@@ -44,7 +44,7 @@ abstract class Control{
   /**
    * Método que se ejecuta por defecto si no se indica una acción
    *
-   * @param array parametros Arreglo asociativo con los parametros de la solicitud
+   * @param array $parametros Arreglo asociativo con los parametros de la solicitud
    */
   public function porDefecto(array $parametros){
     echo 'Hola Mundo!!!';
@@ -54,7 +54,7 @@ abstract class Control{
    * Método que se ejecuta si se indica una acción inexistente, por defecto se ejecuta
    * la acción "porDefecto"
    *
-   * @param array parametros Arreglo asociativo con los parametros de la solicitud
+   * @param array $parametros Arreglo asociativo con los parametros de la solicitud
    */
   public function accionError(array $parametros){
     $this->porDefecto($parametros);
@@ -64,8 +64,8 @@ abstract class Control{
     Ejecuta una vista determinada, convirtiendo un arreglo asociativo a variables
     para que sean mas faciles de usar en la vista
 
-    @param string vista Nombre de la vista a mostrar
-    @param array datos Arreglo asociativos con los datos a mostrar en la vista
+    @param string $vista Nombre de la vista a mostrar
+    @param array $datos Arreglo asociativos con los datos a mostrar en la vista
     @todo mejorar usando templates
    */
   protected function mostrarVista($vista, array $datos){

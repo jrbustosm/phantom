@@ -14,7 +14,7 @@
  * 
  * Es la representación de una tabla de una base de datos en un modelo POO
  *
- * @property ConectorBD con Manejador de Base de Datos
+ * @property ConectorBD $con Manejador de Base de Datos
  *
  * @author Jose Ricardo Bustos Molina <jrbustosm@gmail.com>
  * @version $Id$
@@ -33,33 +33,38 @@ abstract class Modelo{
    * __construct($id1, [$id2, ... , $idn])
    * __construct(array $datos)
    *
-   * @param ids string Identificadores del registro
-   * @param datos array Arreglo asociativo con los datos del registro
+   * @param string $ids Identificadores del registro
+   * @param array $datos Arreglo asociativo con los datos del registro
    * @todo generar una excepcion si los datos del array no concuerdan con las columnas de la tabla (obligatorios)
-   * @todo generar una excepcion si no se ingresan bien el número de argumentos pk
-   * @todo no olvidar etiqueta exception de phpdoc
    * @todo mejorar el constructor usando diff con los campos de la tabla
    */
   function __construct(){
-    if(func_num_args()==1){
+    if(func_num_args()==1 && is_array(func_get_arg(0))){
       $arg = func_get_arg(0);
-      if(is_array($arg)){
-        //Crear una instancia con los datos dados 
-        $this->datos = $arg;
-      }else{
-        //Buscar los datos dado un único id
-        $this->datos = self::$con->buscarXPK($arg, $this::$DATOSTABLA['NOMBRETABLA']);
+      //TODO: falta verificar
+      $this->datos = $arg;
+    }else if(func_num_args()>0){
+      //Buscar los datos dado los ids
+      if(count($this::$DATOSTABLA['PKS']) != func_num_args())
+        throw new Exception('Numero de argumentos erroneos');
+      $ids = array_combine($this::$DATOSTABLA['PKS'], func_get_args());
+      //Verificar los tipos de os IDs
+      foreach($ids as $pk => $id){
+        $tipo = $this::$DATOSTABLA['CAMPOS'][$pk]->tipo;
+        if(!self::verificarTipo($id, $tipo)){
+          throw new Exception('Tipo de argumento invalido');
+        }
       }
+      $this->datos = self::$con->buscarXPK($ids, $this::$DATOSTABLA['NOMBRETABLA']);
     }else{
-      //Buscar los datos dado varios ids
-      $this->datos = self::$con->buscarXPK(func_get_args(), $this::$DATOSTABLA['NOMBRETABLA']);
+      throw new Exception('Se necesitan argumentos para crear un Modelo');
     }
   }
   
   /**
    * Método para consultar propiedades del modelo
    *
-   * @param propiedad string Propiedad a consultar
+   * @param string $propiedad Propiedad a consultar
    * @todo si ingreso una propiedad que no existe en la tabla debería generar una excepción
    * @return mixed Valor de la propiedad solicitada, si la propiedad existe pero no esta definida retorna NULL
    */
@@ -83,6 +88,16 @@ abstract class Modelo{
   public static function cargarDesc(){
     $class = get_called_class();
     $class::$DATOSTABLA['CAMPOS'] = self::$con->desc(static::$DATOSTABLA['NOMBRETABLA']);
+    $class::$DATOSTABLA['PKS'] = array_keys(
+      array_filter($class::$DATOSTABLA['CAMPOS'], function($c){
+        return $c->pk;
+      })
+    );
+    $class::$DATOSTABLA['OBLIGATORIOS'] = array_keys(
+      array_filter($class::$DATOSTABLA['CAMPOS'], function($c){
+        return $c->noNulo;
+      })
+    );
   }
 
   /**
@@ -94,6 +109,22 @@ abstract class Modelo{
     return self::$con->buscarTodos(static::$DATOSTABLA['NOMBRETABLA'], get_called_class());
   }
 
+  /**
+   * verificarTipo
+   *
+   * Verifica si el tipo de un dato coincide con el tipo solicitado
+   *
+   * @todo Se puede fabricar un arreglo asociativo que asocie los tipos con las funciones a comprobar
+   * @param mixed $valor Dato a comprobar su tipo
+   * @param string $tipo Tipo a verificar
+   * @return bool Verdadero si el dato coincide con el tipo solicitado
+   */
+  private static function verificarTipo($valor, $tipo){
+    if($tipo=="integer" || $tipo=="int"){
+      return is_int($valor);
+    }
+    return true;
+  }
 
 }
 
