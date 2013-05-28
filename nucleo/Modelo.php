@@ -33,6 +33,8 @@ abstract class Modelo{
   private static $mapFuncTipo = array(
     "int" => "is_int",
     "integer" => "is_int",
+    "text" => "is_string",
+    "real" => "is_float",
   );
 
   /**
@@ -43,27 +45,32 @@ abstract class Modelo{
    *
    * @param string $ids Identificadores del registro
    * @param array $datos Arreglo asociativo con los datos del registro
-   * @todo generar una excepcion si los datos del array no concuerdan con las columnas de la tabla (obligatorios)
-   * @todo mejorar el constructor usando diff con los campos de la tabla
    */
   function __construct(){
     if(func_num_args()==1 && is_array(func_get_arg(0))){
-      $arg = func_get_arg(0);
-      //TODO: falta verificar
-      $this->datos = $arg;
+      //Primero eliminamos datos extras que no hagan parte del modelo
+      $datos = array_intersect_key(func_get_arg(0), $this::$DATOSTABLA['CAMPOS']);
+      //Luego verficamos que todos los campos obligatorios esten
+      $obligatorios = $this::$DATOSTABLA['OBLIGATORIOS'];
+      if(array_intersect($obligatorios,array_keys($datos))!=$obligatorios){
+        throw new Exception('Faltan datos para crear el modelo');
+      }
+      //Verificamos si se estan ingresando todos los datos con el tipo adecuado
+      if(!self::verificarTiposArreglo($datos)){
+        throw new Exception('Tipo de argumento invalido');
+      }
+      $this->datos = $datos;
     }else if(func_num_args()>0){
       //Buscar los datos dado los ids
       if(count($this::$DATOSTABLA['PKS']) != func_num_args())
         throw new Exception('Numero de argumentos erroneos');
-      $ids = array_combine($this::$DATOSTABLA['PKS'], func_get_args());
+      $pks = array_combine($this::$DATOSTABLA['PKS'], func_get_args());
       //Verificar los tipos de os IDs
-      foreach($ids as $pk => $id){
-        $tipo = $this::$DATOSTABLA['CAMPOS'][$pk]->tipo;
-        if(!self::verificarTipo($id, $tipo)){
-          throw new Exception('Tipo de argumento invalido');
-        }
+      if(!self::verificarTiposArreglo($pks)){
+        throw new Exception('Tipo de argumento invalido');
       }
-      $this->datos = self::$con->buscarXPK($ids, $this::$DATOSTABLA['NOMBRETABLA']);
+      $this->datos = self::$con->buscarXPK($pks, $this::$DATOSTABLA['NOMBRETABLA']);
+      $this->datos = array_intersect_key($this->datos, $this::$DATOSTABLA['CAMPOS']);
     }else{
       throw new Exception('Se necesitan argumentos para crear un Modelo');
     }
@@ -129,8 +136,27 @@ abstract class Modelo{
    * @return bool Verdadero si el dato coincide con el tipo solicitado
    */
   private static function verificarTipo($valor, $tipo){
-    $func = self::$mapFuncTipo[$tipo];
+    $func = self::$mapFuncTipo[strtolower($tipo)];
     return $func($valor);
+  }
+
+  /**
+   * verificarTiposArreglo
+   *
+   * Verifica si un arreglo asociativo "nombreCampo=>valor" tiene los tipos 
+   * adecuados
+   *
+   * @param array $datos Arreglo asociativo a probar
+   * @return bool Retorna verdaero si los datos son correctos
+   */
+  private static function verificarTiposArreglo(array $datos){
+      foreach($datos as $nombreCampo => $valor){
+        $tipo = static::$DATOSTABLA['CAMPOS'][$nombreCampo]->tipo;
+        if(!self::verificarTipo($valor, $tipo)){
+          return false;
+        }
+      }
+      return true;
   }
 
 }

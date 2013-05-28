@@ -34,3 +34,10 @@ print_r(Imagen::$DATOSTABLA['PKS']);
 echo "<br>";
 print_r(Imagen::$DATOSTABLA['OBLIGATORIOS']);
 
+echo "<br>";
+echo "<br>";
+$img = new Imagen(array(
+  "nombre"=>"Nuevo.png"
+));
+print_r($img);
+
