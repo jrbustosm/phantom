@@ -17,27 +17,11 @@ foreach($imagenes as $img):
   ++$i;
 endforeach;
 
-$img = new Imagen(1);
-print_r($img);
-
-echo "<br>";
-echo "<br>";
-
-foreach(Imagen::$DATOSTABLA["CAMPOS"] as $k => $campo){
-  echo "$k: ";
-  print_r($campo);
-  echo "<br>";
-}
-
-echo "<br>";
-print_r(Imagen::$DATOSTABLA['PKS']);
-echo "<br>";
-print_r(Imagen::$DATOSTABLA['OBLIGATORIOS']);
-
-echo "<br>";
 echo "<br>";
 $img = new Imagen(array(
-  "nombre"=>"Nuevo.png"
+  "id"=>1,
+  "nombre"=>"0.png"
 ));
 print_r($img);
+//$img->guardar()
 

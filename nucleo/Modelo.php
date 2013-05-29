@@ -89,6 +89,11 @@ abstract class Modelo{
     return NULL;
   }
 
+  public function borrar(){
+    $pks = array_intersect_key($this->datos, array_combine($this::$DATOSTABLA['PKS'],$this::$DATOSTABLA['PKS']));
+    self::$con->borrarXPK($pks, $this::$DATOSTABLA['NOMBRETABLA']);
+  }
+
   /**
    * Método que inicializa los atributos de clase
    */

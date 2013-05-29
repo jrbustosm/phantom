@@ -93,22 +93,46 @@ abstract class ConectorBD{
    *
    * Busca el registro que tenga el (los) Primary Keys solicitados
 
-   * @todo mejorar IDs aun no esta en formato array
    * @todo si no existe registro retornar NULL?
    * @param array $ids Arreglo asociativo con los ids del registro a buscar
-   * @param string $tabla Nombre d ela tabla
-   * @param string $class Nombre d ela clase de los objetos que van a ser
+   * @param string $tabla Nombre de la tabla
+   * @param string $class Nombre de la clase de los objetos que van a ser
    * @eturn mixed Un arreglo, objeto de tipo class o null si no encuentra registro
    */
   public function buscarXPK(array $ids, $tabla, $class=""){
-    array_walk($ids, function(&$v, $k){
-      $v = "$k='" . addslashes($v) . "'";
-    });
-    $where = implode(" AND ", $ids);
+    $where = self::_Y($ids);
     $v = $this->buscar($tabla, $where, $class);
     return $v[0];
   }
-  
+
+  /**
+   * borrarXPK
+   *
+   * Borra un único registro de acuerdo a sus llaves primarias
+   *
+   * @param array $ids Arreglo asociativo con los ids del registro a borrar
+   * @param string $tabla Nombre de la tabla
+   */  
+  public function borrarXPK(array $ids, $tabla){
+    $where = self::_Y($ids);
+    $this->borrar($tabla, $where);
+  }
+
+  /**
+   * _Y
+   *
+   * Une diferentes expresiones SQL almacenadas en un arreglo asociativo usando el conector AND
+   *
+   * @todo se puede mejorar
+   * @param arra $A arreglo asociativo con las expreciones a unir
+   */
+  private static function _Y(array $A){
+    array_walk($A, function(&$v, $k){
+      $v = "$k='" . addslashes($v) . "'";
+    });
+    return implode(" AND ", $A);
+  }
+
   /**
    * buscar
    *
@@ -121,7 +145,17 @@ abstract class ConectorBD{
    * @return array Un arreglo de objetos de tipo class o arrays, como resultado de buscar
    *         los registros en la tabla y criterios de indicados
    */
-  abstract public function buscar($tabla, $where);
+  abstract public function buscar($tabla, $where, $class);
+
+  /**
+   * borrar
+   *
+   * Borra un grupo de registros en una tabla de acuerdo a ciertos criterios
+   *
+   * @param string $tabla Nombre de la tabla donde borrar los datos
+   * @param string $where Criterios de busqueda de la sentencia delete en formato SQL
+   */
+  abstract public function borrar($tabla, $where);
 
   /**
    * desc

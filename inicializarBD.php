@@ -1,5 +1,6 @@
 <?php
 
+include 'conf/conf.php';
 include 'nucleo/ConectorBD.php';
 include 'nucleo/ConectorSQLite.php';
 

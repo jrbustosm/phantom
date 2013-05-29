@@ -80,6 +80,21 @@ class ConectorSQLite extends ConectorBD{
   }
   
   /**
+   * borrar
+   *
+   * Borra un grupo de registros en una tabla de acuerdo a ciertos criterios
+   *
+   * @param string $tabla Nombre de la tabla donde borrar los datos
+   * @param string $where Criterios de busqueda de la sentencia select en formato SQL
+   * @override
+   */
+  public function borrar($tabla, $where){
+    $sql = "DELETE FROM $tabla WHERE $where";
+    echo $sql;
+    $this->manejador->query($sql);
+  }
+
+  /**
    * desc
    *
    * Busca la descripcción de las columnas de una tabla en una base de datos de SQLite
