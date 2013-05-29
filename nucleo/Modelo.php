@@ -89,6 +89,13 @@ abstract class Modelo{
     return NULL;
   }
 
+  /**
+   * borrar
+   *
+   * Borra el registro de la base de datos
+   *
+   * @todo Si el registro no existe aun no debería hacer nada
+   */
   public function borrar(){
     $pks = array_intersect_key($this->datos, array_combine($this::$DATOSTABLA['PKS'],$this::$DATOSTABLA['PKS']));
     self::$con->borrarXPK($pks, $this::$DATOSTABLA['NOMBRETABLA']);
