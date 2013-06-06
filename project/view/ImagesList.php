@@ -7,10 +7,10 @@
 
 <?php
 $i=0;
-foreach($imagenes as $img):
+foreach($images as $img):
 ?>
 
-<img src = "<?= "{$GLOBALS['_URLIMGS']}/{$img->nombre}" ?>" />
+<img src = "<?= "{$GLOBALS['_URLIMGS']}/{$img->name}" ?>" />
 
 <?php
   if($i%5==4) echo "<br />";
@@ -18,10 +18,10 @@ foreach($imagenes as $img):
 endforeach;
 
 echo "<br>";
-$img = new Imagen(array(
+$img = new Image(array(
   "id"=>1,
-  "nombre"=>"0.png"
+  "name"=>"0.png"
 ));
 print_r($img);
-//$img->guardar()
+//$img->save()
 

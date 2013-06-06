@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<h1>Phantom Details</h1>
+
+<ol>
+<li>Free Software with license GPL3</li>
+<li>Phantom need php 5.4</li>
+<li>Begin where possible with kiss and XP</li>
+<li>All comments and names in English</li>
+<li>Use <a href="http://www.phpdoc.org/" target="_blank">PHPdoc</a> is mandatory.</li>
+<li>Use POO</li>
+<li>Always Cleans URL'S</li>
+<li>DataBase support in Mysql and SQLlite</li>
+<li>Design pattern MVC</li>
+<li>Full integration with Jquery</li>
+<li>Model Abstraction of DataBase to POO:
+  <ul>
+  <li>-Multiple PK: YES.</li>
+  <li>-one to one: YES.</li>
+  <li>-one to many: YES.</li>
+  <li>-Many to many: LIKELY.</li>
+  </ul>
+</li>
+<li>Directory:<br>
+<pre>
+index.php # single file that users can access
++core: # own system classes.
++img:  # images.
++css:  # stylesheets
++js:   # Javascript
+  +jquery
+    jquery.min.js     
+    jquery-ui.min.js
+    img
++data # DataBase SQlite
++conf # Configuration files 
+  main.conf # main configuration file
++project
+  +control
+  +view
+  +model
+</pre>
+</li>  
+<li>Unit Testing: NOT</li>
+<li>Class Autoloading: NOT</li>
+<li>Templates for Views: YES</li>
+<li>Multiple DataBase: NOT</li>
+<li>Directories:core, conf, data and project with restricted access</li>
+</ol>

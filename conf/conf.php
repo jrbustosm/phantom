@@ -1,33 +1,33 @@
 <?php
 
 ######################
-#configuracion basica#
+#basic configuration#
 ######################
 
-$_TITULO = "phantom";
+$_TITLE = "phantom";
 $_EMAIL = "foo@server";
 
 #############################
-#configuracion Base de datos#
+#Database settings#
 #############################
 
-$_BDMOTOR = "SQLite";
-$_BDNOMBRE = "datos/mi.bd";
+$_DBENGINE = "SQLite";
+$_DBNAME = "data/MyDB.bd";
 
-#En caso de que sea mysql descomentar
-#$_BDMOTOR = "MySQL";
-#$_BDNOMBRE ="";
-#$_BDSERVIDOR ="";
-#$_BDPUERTO ="";
-#$_BDUSUARIO ="";
-#$_BDPASSWORD="";
+#In case it is MySQL uncomment
+#$_DBENGINE = "MySQL";
+#$_DBNAME ="";
+#$_DBSERVER ="";
+#$_DBPORT ="";
+#$_DBUSER ="";
+#$_DBPASSWORD ="";
 
 ###############################################
-#Configuracion control de urls#
+#Configuration control urls#
 ###############################################
 
 $_URLBASE = "/phantom-master/";
 $_URLIMGS = $_URLBASE . "img/";
-$_URLEXCLUIR = array("img","js","css");
-$_CONTROL_INI = "imagen";
+$_URLEXCLUDE = array("img","js","css");
+$_CONTROL_INI = "Image";
 
